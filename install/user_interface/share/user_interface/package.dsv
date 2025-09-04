@@ -4,6 +4,3 @@ source;share/user_interface/hook/pythonpath.sh
 source;share/user_interface/hook/ament_prefix_path.ps1
 source;share/user_interface/hook/ament_prefix_path.dsv
 source;share/user_interface/hook/ament_prefix_path.sh
-source;../../build/user_interface/share/user_interface/hook/pythonpath_develop.ps1
-source;../../build/user_interface/share/user_interface/hook/pythonpath_develop.dsv
-source;../../build/user_interface/share/user_interface/hook/pythonpath_develop.sh
