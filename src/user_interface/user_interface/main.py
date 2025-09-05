@@ -3,15 +3,17 @@ import rclpy
 import pygame
 from rclpy.node import Node
 
-from example_interfaces.msg import String
 from tank_interfaces.msg import MotionDemand
 
 joysticks = {}
 
-AXIS_THRESHOLD = 0.25
+AXIS_THRESHOLD = 0.0  # Not used, set to 0 to capture all movements
 
 
 class UserInterfaceNode(Node):
+    yaw: int = 0
+    forward: int = 0
+
     def __init__(self):
         super().__init__("user_interface_node")
         self.get_logger().info("User Interface Node has been started!")
@@ -21,24 +23,26 @@ class UserInterfaceNode(Node):
 
     def string_publisher_callback(self):
         msg = MotionDemand()
-        msg.data = "Hello World: %d" % (self.get_clock().now().nanoseconds // 1000000)
+        msg.yaw = self.yaw
+        msg.forward = self.forward
         self.publisher_.publish(msg)
-        # self.get_logger().info('Publishing: "%s"' % msg.data)
 
     def joystick_timer_callback(self):
         for event in pygame.event.get():
             if event.type == pygame.JOYAXISMOTION:
                 if event.axis == 0:
                     if abs(event.value) > AXIS_THRESHOLD:
-                        print(f"Rotate {event.value * 100:.1f} %")
+                        self.yaw = int(event.value * 100)
 
                 if event.axis == 2:
+                    # Left trigger, backwards
                     if abs(event.value) > AXIS_THRESHOLD:
-                        print(f"Backwards {event.value * 50 + 50:.1f} %")
+                        self.forward = int(-(event.value * 50 + 50))
 
                 if event.axis == 5:
+                    # Right trigger, forwards
                     if abs(event.value) > AXIS_THRESHOLD:
-                        print(f"Forward {event.value * 50 + 50:.1f} %")
+                        self.forward = int(event.value * 50 + 50)
 
             # Handle hotplugging
             if event.type == pygame.JOYDEVICEADDED:

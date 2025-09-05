@@ -1,7 +1,9 @@
 import rclpy
 from rclpy.node import Node
 
-from example_interfaces.msg import String
+from tank_interfaces.msg import MotionDemand
+
+MINIMUM_THRESHOLD = 5  # Minimum absolute value to consider movement
 
 
 class MotionControllerNode(Node):
@@ -9,11 +11,13 @@ class MotionControllerNode(Node):
         super().__init__("motion_controller_node")
         self.get_logger().info("Motion Controller Node has been started!!!")
         self.subscription = self.create_subscription(
-            String, "user_interface", self.listener_callback, 10
+            MotionDemand, "user_interface", self.listener_callback, 10
         )
 
     def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.data)
+        self.get_logger().info(
+            "I heard motion demand - yaw: %d, forward: %d" % (msg.yaw, msg.forward)
+        )
 
 
 def main(args=None):

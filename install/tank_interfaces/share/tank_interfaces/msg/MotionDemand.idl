@@ -1,0 +1,14 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from tank_interfaces/msg/MotionDemand.msg
+// generated code does not contain a copyright notice
+
+
+module tank_interfaces {
+  module msg {
+    struct MotionDemand {
+      int64 yaw;
+
+      int64 forward;
+    };
+  };
+};

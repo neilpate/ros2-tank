@@ -1,0 +1,36 @@
+{
+  "type_description_msg": {
+    "type_description": {
+      "type_name": "tank_interfaces/msg/MotionDemand",
+      "fields": [
+        {
+          "name": "yaw",
+          "type": {
+            "type_id": 8,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        },
+        {
+          "name": "forward",
+          "type": {
+            "type_id": 8,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        }
+      ]
+    },
+    "referenced_type_descriptions": []
+  },
+  "type_hashes": [
+    {
+      "type_name": "tank_interfaces/msg/MotionDemand",
+      "hash_string": "RIHS01_48fb6c79d82f1ce70d9ab7a16c5c4bd5cdf1559ec9c3bca4541e7d40b30afc56"
+    }
+  ]
+}

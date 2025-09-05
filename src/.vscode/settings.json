@@ -1,0 +1,16 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/../install/tank_interfaces/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/user_interface/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/motion_controller/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/first_steps_interfaces/lib/python3.12/site-packages",
+        "/opt/ros/kilted/lib/python3.12/site-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/../install/tank_interfaces/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/user_interface/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/motion_controller/lib/python3.12/site-packages",
+        "${workspaceFolder}/../install/first_steps_interfaces/lib/python3.12/site-packages",
+        "/opt/ros/kilted/lib/python3.12/site-packages"
+    ]
+}
