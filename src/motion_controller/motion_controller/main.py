@@ -18,36 +18,46 @@ class TankMotion:
             6, 5
         )  # Initialize the right motor with GPIO pins 6 and 5
 
+    def clamp_zero_to_one(self, value: float) -> float:
+        """Clamp the input value to the range [0, 1]."""
+        return max(0.0, min(1.0, value))
+
     def set_left_motor_pwm(self, duty_cycle_percentage: float):
         """Control the left wheel based on the duty cycle value."""
         if duty_cycle_percentage > 0:
-            self.left_motor.forward(
-                int(duty_cycle_percentage / 100)
-            )  # Move the left motor forward
+            # Move the left motor forward
+            pwm = duty_cycle_percentage / 100
+            self.left_motor.forward(self.clamp_zero_to_one(pwm))
+            # print(f"L F: {duty_cycle_percentage}%")
+
         elif duty_cycle_percentage < 0:
-            self.left_motor.backward(
-                -int(duty_cycle_percentage / 100)
-            )  # Move the left motor backward
+            # Move the left motor backward
+            pwm = -(duty_cycle_percentage / 100.0)
+            self.left_motor.backward(self.clamp_zero_to_one(pwm))
+            # print(f"L B: {-duty_cycle_percentage}%")
         else:
             self.left_motor.stop()  # Stop the left motor
 
     def set_right_motor_pwm(self, duty_cycle_percentage: float):
         """Control the right wheel based on the duty cycle value."""
         if duty_cycle_percentage > 0:
-            self.right_motor.forward(
-                int(duty_cycle_percentage / 100)
-            )  # Move the right motor forward
+            # Move the right motor forward
+            pwm = duty_cycle_percentage / 100.0
+            self.right_motor.forward(self.clamp_zero_to_one(pwm))
+            # print(f"R F: {duty_cycle_percentage}%")
+
         elif duty_cycle_percentage < 0:
-            self.right_motor.backward(
-                -int(duty_cycle_percentage / 100)
-            )  # Move the right motor backward
+            # Move the right motor backward
+            pwm = -(duty_cycle_percentage / 100.0)
+            self.right_motor.backward(self.clamp_zero_to_one(pwm))
+            # print(f"R B: {-duty_cycle_percentage}%")
         else:
             self.right_motor.stop()  # Stop the right motor
 
     def apply_motion_demand(self, yaw: float, forward: float):
         # Convert yaw and forward into left and right wheel speeds
-        left_wheel_duty_cycle_percentage = forward + yaw
-        right_wheel_duty_cycle_percentage = forward - yaw
+        left_wheel_duty_cycle_percentage = -forward - yaw
+        right_wheel_duty_cycle_percentage = -forward + yaw
 
         """Set the duty cycle for both motors and ensure they are within the valid range."""
         self.set_left_motor_pwm(
@@ -56,6 +66,8 @@ class TankMotion:
         self.set_right_motor_pwm(
             right_wheel_duty_cycle_percentage
         )  # Control the right wheel
+
+        print(f"{self.left_motor.value}, {self.right_motor.value}")
 
     def close(self):
         """Close the motors to release resources."""
@@ -73,17 +85,17 @@ class MotionControllerNode(Node):
         )
 
     def listener_callback(self, msg):
-        self.get_logger().info(
-            "I heard motion demand - yaw: %d, forward: %d" % (msg.yaw, msg.forward)
-        )
+        # self.get_logger().info(
+        # "I heard motion demand - yaw: %d, forward: %d" % (msg.yaw, msg.forward)
+        # )
         self.tank_motion.apply_motion_demand(msg.yaw, msg.forward)
 
 
 def main(args=None):
-    pwm_motor = TankMotion()  # Create an instance of the tankMotor class
+    tank_motion = TankMotion()  # Create an instance of the tankMotor class
 
     rclpy.init(args=args)
-    node = MotionControllerNode()
+    node = MotionControllerNode(tank_motion)
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
