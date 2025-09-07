@@ -7,6 +7,9 @@ Got this thing: https://www.amazon.nl/dp/B0BNDQFRP1?ref=ppx_yo2ov_dt_b_fed_asin_
 <img width="823" height="823" alt="image" src="https://github.com/user-attachments/assets/f220cae1-ecaf-449f-8ec4-2d8ae5945ca2" />
 
 
-It comes with its own custom software but I am not using that. Instead going to take the hardware and try make a nice ROS2 project.
+It comes with its own custom software but I am not using that. Instead I am just using it as a hardware platform and using creating my own software.
 
 This is my first attempt at something in ROS2, so really don't expect this to be good!
+
+
+Note: the service in `Misc` should actually live in `/etc/systemd/system`
