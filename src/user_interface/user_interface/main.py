@@ -58,6 +58,11 @@ class UserInterfaceNode(Node):
 
 
 def main(args=None):
+    # Set pygame to use dummy video driver for headless operation
+    import os
+
+    os.environ["SDL_VIDEODRIVER"] = "dummy"
+
     pygame.init()
     rclpy.init(args=args)
     node = UserInterfaceNode()
