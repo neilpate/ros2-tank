@@ -24,33 +24,29 @@ class TankMotion:
 
     def set_left_motor_pwm(self, duty_cycle_percentage: float):
         """Control the left wheel based on the duty cycle value."""
-        if duty_cycle_percentage > 0:
+        if duty_cycle_percentage > MINIMUM_THRESHOLD:
             # Move the left motor forward
             pwm = duty_cycle_percentage / 100
             self.left_motor.forward(self.clamp_zero_to_one(pwm))
-            # print(f"L F: {duty_cycle_percentage}%")
 
-        elif duty_cycle_percentage < 0:
+        elif duty_cycle_percentage < -MINIMUM_THRESHOLD:
             # Move the left motor backward
             pwm = -(duty_cycle_percentage / 100.0)
             self.left_motor.backward(self.clamp_zero_to_one(pwm))
-            # print(f"L B: {-duty_cycle_percentage}%")
         else:
             self.left_motor.stop()  # Stop the left motor
 
     def set_right_motor_pwm(self, duty_cycle_percentage: float):
         """Control the right wheel based on the duty cycle value."""
-        if duty_cycle_percentage > 0:
+        if duty_cycle_percentage > MINIMUM_THRESHOLD:
             # Move the right motor forward
             pwm = duty_cycle_percentage / 100.0
             self.right_motor.forward(self.clamp_zero_to_one(pwm))
-            # print(f"R F: {duty_cycle_percentage}%")
 
-        elif duty_cycle_percentage < 0:
+        elif duty_cycle_percentage < -MINIMUM_THRESHOLD:
             # Move the right motor backward
             pwm = -(duty_cycle_percentage / 100.0)
             self.right_motor.backward(self.clamp_zero_to_one(pwm))
-            # print(f"R B: {-duty_cycle_percentage}%")
         else:
             self.right_motor.stop()  # Stop the right motor
 
@@ -67,7 +63,7 @@ class TankMotion:
             right_wheel_duty_cycle_percentage
         )  # Control the right wheel
 
-        print(f"{self.left_motor.value}, {self.right_motor.value}")
+        # print(f"{self.left_motor.value}, {self.right_motor.value}")
 
     def close(self):
         """Close the motors to release resources."""
