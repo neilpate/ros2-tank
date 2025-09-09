@@ -13,3 +13,8 @@ This is my first attempt at something in ROS2, so really don't expect this to be
 
 
 Note: the service in `Misc` should actually live in `/etc/systemd/system`
+
+Note: by default in Ubuntu the standard user does not have access to the camera.
+This can be solved by adding the user to the `video` group:
+For example to add user neil run:
+  `sudo usermod -a -G video neil`
