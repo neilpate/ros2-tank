@@ -1,1 +1,0 @@
-/home/neil/tank_ws/build/first_steps_interfaces/rosidl_typesupport_introspection_c/first_steps_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h

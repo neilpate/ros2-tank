@@ -1,2 +1,1 @@
-int64 yaw
-int64 forward
+/home/neil/ros2-tank/src/tank_interfaces/msg/MotionDemand.msg

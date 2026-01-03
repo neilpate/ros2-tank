@@ -1,1 +1,0 @@
-/home/neil/tank_ws/build/first_steps_interfaces/ament_cmake_core/first_steps_interfacesConfig-version.cmake
