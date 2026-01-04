@@ -1,1 +1,0 @@
-/home/neil/ros2-tank/build/tank_interfaces/ament_cmake_environment_hooks/local_setup.bash
