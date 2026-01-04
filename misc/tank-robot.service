@@ -6,8 +6,8 @@ Description=ROS2 Tank Services
 [Service]
 User=neil
 Group=neil
-WorkingDirectory=/home/neil/tank_ws
-ExecStart=/bin/bash -c 'source /opt/ros/kilted/setup.bash && source install/setup.bash && ros2 launch tank_bringup tank.launch.xml'
+WorkingDirectory=/home/neil/ros2_tank
+ExecStart=/bin/bash -c 'source install/setup.bash && ros2 launch tank_bringup tank.launch.xml'
 Restart=always
 RestartSec=5
 StandardOutput=journal

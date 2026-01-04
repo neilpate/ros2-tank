@@ -1,4 +1,4 @@
 <launch>
-    <node pkg="user_interface" exec="user_interface_node"/>
+    <node pkg="camera" exec="camera_publisher"/>
     <node pkg="motion_controller" exec="motion_controller_node"/>
 </launch>
