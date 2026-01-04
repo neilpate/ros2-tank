@@ -16,7 +16,6 @@ setup(
     maintainer_email="neil@premiergsolutions.com",
     description="TODO: Package description",
     license="TODO: License declaration",
-    tests_require=["pytest"],
     entry_points={
         "console_scripts": ["motion_controller_node = motion_controller.main:main"],
     },
