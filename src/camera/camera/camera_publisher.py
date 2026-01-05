@@ -74,9 +74,9 @@ class CameraNode(Node):
         t.child_frame_id = 'camera'
 
         # Set translation (x, y, z)
-        t.transform.translation.x = 1.0
+        t.transform.translation.x = 0.0
         t.transform.translation.y = 0.0
-        t.transform.translation.z = 0.5
+        t.transform.translation.z = 0.0
 
         # Set rotation as quaternion (no rotation in this example)
         t.transform.rotation.x = 0.0
@@ -85,15 +85,7 @@ class CameraNode(Node):
         t.transform.rotation.w = 1.0
 
         self.tf_broadcaster.sendTransform(t)
-        self.get_logger().info('Published TF: world -> camera')
-
-        # if self.save_image:
-        #     filename = f"captured_image_{self.count}.jpg"
-        #     filepath = self.directory / filename
-        #     self.get_logger().info(f"Image saved to {filepath}")
-        #     self.cam.capture_file(str(filepath))
-        #     # cv2.imwrite(str(filepath), image)
-        #     self.count += 1
+        # self.get_logger().info('Published TF: world -> camera')
 
 def main():
     rclpy.init()
