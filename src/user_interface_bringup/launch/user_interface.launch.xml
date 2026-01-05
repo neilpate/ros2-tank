@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="user_interface" exec="user_interface_node"/>
+    <node pkg="camera" exec="camera_subscriber"/>
+</launch>
